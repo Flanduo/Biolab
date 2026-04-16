@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+
+# Conda / Virtual env
+conda_envs/
+*.tar.gz
+venv/
+.env
+
+# ROS2
+ros2_ws/build/
+ros2_ws/install/
+ros2_ws/log/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data & Models (large files, manage separately)
+datasets/*
+!datasets/.gitkeep
+models/*
+!models/.gitkeep
+
+# Video recordings (9.6G+, not in git)
+video_record/
+
+# openarm_demo (large, manage as submodule or separately)
+openarm_demo/
+
+# Experiment outputs
+experiments/*
+!experiments/.gitkeep

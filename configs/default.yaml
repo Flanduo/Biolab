@@ -1,0 +1,15 @@
+# Biolab 项目默认配置
+# 各模块参数在此统一管理
+
+robot:
+  name: openarm
+  dof: 6
+  ip: "10.0.0.2"
+
+can:
+  interface: "can0"
+  baudrate: 1000000
+
+camera:
+  enabled: false
+  device_id: 0
