@@ -1,0 +1,44 @@
+/**:
+  ros__parameters:
+    device_path: "/dev/input/js0"
+    deadzone: 0.3
+    publish_rate: 20.0
+    trajectory_dt: 0.2
+    publish_on_input_only: true
+
+    # Joint command speed (rad/s)
+    joint_speed: 0.8
+    joint7_speed: 1.2
+
+    # Gripper action step control
+    gripper_step: 0.004
+    gripper_min: 0.0
+    gripper_max: 0.04
+    gripper_effort: 40.0
+
+    # Topics/actions from openarm.bimanual.launch.py
+    left_topic: "/left_joint_trajectory_controller/joint_trajectory"
+    right_topic: "/right_joint_trajectory_controller/joint_trajectory"
+    left_gripper_action: "/left_gripper_controller/gripper_cmd"
+    right_gripper_action: "/right_gripper_controller/gripper_cmd"
+
+    # Axis mapping
+    axis.left_x: 0
+    axis.left_y: 1
+    axis.right_x: 2
+    axis.right_y: 3
+    axis.hat_y: 5
+
+    # Button mapping
+    button.x: 0
+    button.a: 1
+    button.b: 2
+    button.y: 3
+    button.lb: 4
+    button.rb: 5
+    button.lt: 6
+    button.rt: 7
+
+    # Simple default limits for J1..J7 (rad), tune if needed.
+    joint_limits.min: [-3.14, -2.20, -3.14, -2.20, -3.14, -2.20, -3.14]
+    joint_limits.max: [3.14, 2.20, 3.14, 2.20, 3.14, 2.20, 3.14]

@@ -1,0 +1,47 @@
+# Copyright 2025 Enactic, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+  # ---------------------------------------------------------
+  # Shared gains:
+  # • Kp/Kd are shared between bilateral and unilateral control.
+  # • Increasing Kp/Kd makes contact feel more "real" but also heavier.
+  #
+  # Friction model (tanh):
+  #   τ_fric(ω) = Fo + Fv·ω + Fc·tanh(k·ω)
+  #   Fc : Coulomb friction magnitude [Nm]
+  #   k  : tanh steepness near zero velocity
+  #   Fv : Viscous friction coefficient [Nm·s/rad]
+  #   Fo : Constant bias/offset torque [Nm]
+  # -------------------------------------------------------
+
+LeaderArmParam:
+  # 进一步降低 Kp 值以减少主臂（左臂/右臂）的僵硬感，提高柔顺性
+  # 原值: [240.0, 240.0, 240.0, 240.0, 24.0, 31.0, 25.0, 16.0]
+  # 之前: [30.0, 30.0, 30.0, 30.0, 15.0, 20.0, 15.0, 12.0]
+  # 进一步降低到 10-15 范围，使主臂更柔顺，确保左右臂体验一致
+  # 注意：前4个是手臂关节，后4个是夹爪关节
+  # 夹爪需要极低的Kp/Kd以实现零力反馈，可以自由打开
+  # 注意：代码中会对leader夹爪强制使用Kp=0.2, Kd=0.005，确保左右臂一致
+  Kp: [15.0, 15.0, 15.0, 15.0, 1.0, 1.0, 1.0, 1.0]  # 手臂关节Kp降低到15.0，提高柔顺性；夹爪Kp代码中会限制
+  # 进一步降低 Kd 值以减少阻尼和阻力，提高柔顺性
+  # 原值: [3.0, 3.0, 3.0, 3.0, 0.2, 0.2, 0.2, 0.2]
+  # 之前: [0.8, 0.8, 0.8, 0.8, 0.2, 0.2, 0.3, 0.1]
+  # 进一步降低以减少速度阻尼，提高柔顺性
+  # 夹爪Kd降低到接近0，允许自由移动，代码中会进一步限制
+  Kd: [0.3, 0.3, 0.3, 0.3, 0.02, 0.02, 0.02, 0.02]  # 手臂关节Kd降低到0.3，提高柔顺性；夹爪Kd代码中会限制
+  Fc: [0, 0, 0, 0, 0, 0, 0, 0]
+  k:  [28.417,  28.417,  29.065,  130.038, 151.771, 242.287, 7.888,  4.000]
+  Fv: [0, 0, 0, 0, 0, 0, 0, 0]
+  Fo: [0, 0, 0, 0, 0, 0, 0, 0]
+

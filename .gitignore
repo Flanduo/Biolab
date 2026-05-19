@@ -1,5 +1,6 @@
 # Python
 __pycache__/
+**/__pycache__/
 *.py[cod]
 *$py.class
 *.egg-info/
@@ -18,6 +19,9 @@ venv/
 ros2_ws/build/
 ros2_ws/install/
 ros2_ws/log/
+**/build/
+**/install/
+**/log/
 
 # IDE
 .vscode/
@@ -29,6 +33,10 @@ ros2_ws/log/
 # OS
 .DS_Store
 Thumbs.db
+
+# Local scratch notes
+1.md
+ros2_ws/1.md
 
 # Data & Models (large files, manage separately)
 datasets/*
@@ -45,3 +53,35 @@ openarm_demo/
 # Experiment outputs
 experiments/*
 !experiments/.gitkeep
+
+# Third-party SDKs and drivers (large binaries)
+linkerhand-sdk/
+linker_hand_ros2_sdk/
+HandDriver_BV2.1.9_202509171537_Linux_x86_64/
+ZEDProject/
+
+# Local agent/tool config
+.claude/
+.codex/
+.agents/
+
+# Secrets
+.env
+*.env
+*.key
+*.pem
+*.p12
+*.pfx
+*secret*
+*token*
+*password*
+config.local.py
+
+# svtrobo workspace (large)
+svtrobo_ws/
+
+# Robot data logs
+robot_data/
+
+# ROS2 large description meshes
+ros2_ws/src/openarm_description/

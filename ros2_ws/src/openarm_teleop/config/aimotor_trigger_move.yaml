@@ -1,0 +1,41 @@
+state_topic: "/aimotor/position_state"
+left_topic: "/left_forward_position_controller/commands"
+right_topic: "/right_forward_position_controller/commands"
+
+# 触发条件：value < trigger_threshold 时执行目标动作。
+trigger_threshold: 16.0
+# 兼容旧字段：仅保留，不参与恢复判定。
+release_threshold: 16.5
+# 恢复条件（满足其一即可）：上升且 value>restore；或从下穿越 restore；
+# 或上升且 value>trigger（避免数值从中间区一步跳回高位时漏恢复）。
+restore_threshold: 12.0
+cooldown_sec: 1.0
+
+# Publish repeated commands for robustness.
+publish_repeat: 3
+publish_repeat_interval_sec: 0.05
+# Smooth move in forward_position mode.
+move_duration_sec: 3.0
+move_steps: 90
+restore_on_release: true
+use_right_target_for_both: false
+
+# Target joint positions for both arms (7 joints each).
+# These values are converted from your reference JointState snapshot.
+left_positions:
+  - 0.5750743877317479
+  - 0.019645990691996573
+  - -0.000953688868543523
+  - 2.2500000000000000
+  - 0.007820248722056888
+  - -0.024986648355840302
+  - -1.1236362249179823
+
+right_positions:
+  - -0.7566567483024347
+  - 0.01583123521782248
+  - -0.013160906385900617
+  - 2.2500000000000000
+  - -0.015068284122987663
+  - 0.027275501640344757
+  - 1.3242923628595413

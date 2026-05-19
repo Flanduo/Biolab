@@ -1,0 +1,34 @@
+/**:
+  ros__parameters:
+    # Subscribe sensor state
+    state_topic: "/aimotor/position_state"
+
+    # Publish to forward position controllers (both arms)
+    left_command_topic: "/left_forward_position_controller/commands"
+    right_command_topic: "/right_forward_position_controller/commands"
+    publish_left: true
+    publish_right: true
+
+    # Trigger rule:
+    # - value < trigger_threshold -> trigger once
+    # - re-arm only when value > release_threshold
+    trigger_threshold: 0.2
+    release_threshold: 0.25
+    cooldown_sec: 1.0
+    enabled: true
+
+    # If target_positions is empty, read from target_pose_file by joint names.
+    target_joint_names:
+      - "openarm_right_joint1"
+      - "openarm_right_joint2"
+      - "openarm_right_joint3"
+      - "openarm_right_joint4"
+      - "openarm_right_joint5"
+      - "openarm_right_joint6"
+      - "openarm_right_joint7"
+    target_positions: []
+    target_pose_file: "1.md"
+
+    # Publish same command multiple times for robustness
+    publish_repeat: 3
+    publish_repeat_interval_sec: 0.05

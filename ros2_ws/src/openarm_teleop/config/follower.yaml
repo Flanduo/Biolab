@@ -1,0 +1,42 @@
+# Copyright 2025 Enactic, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+  # ---------------------------------------------------------
+  # Shared gains:
+  # • Kp/Kd are shared between bilateral and unilateral control.
+  # • Increasing Kp/Kd makes contact feel more "real" but also heavier.
+  #
+  # Friction model (tanh):
+  #   τ_fric(ω) = Fo + Fv·ω + Fc·tanh(k·ω)
+  #   Fc : Coulomb friction magnitude [Nm]
+  #   k  : tanh steepness near zero velocity
+  #   Fv : Viscous friction coefficient [Nm·s/rad]
+  #   Fo : Constant bias/offset torque [Nm]
+  # -------------------------------------------------------
+
+FollowerArmParam:
+  # 保持较低的 Kp 值以保持柔顺性
+  # 原值: [240.0, 240.0, 240.0, 240.0, 24.0, 31.0, 25.0, 16.0]
+  # 之前: [30.0, 30.0, 30.0, 30.0, 15.0, 20.0, 15.0, 12.0]
+  # 降低到 15-25 范围，使跟随更柔顺流畅
+  Kp: [20.0, 20.0, 20.0, 20.0, 10.0, 15.0, 10.0, 8.0]   # 关节刚度系数，越大越硬
+  # 提高 Kd 值以抑制抖动，同时保持柔顺性
+  # 原值: [3.0, 3.0, 3.0, 3.0, 0.2, 0.2, 0.2, 0.2]
+  # 之前: [0.5, 0.5, 0.5, 0.5, 0.15, 0.15, 0.2, 0.08] - 太低导致抖动
+  # 适当提高 Kd 以抑制抖动，Kd/Kp 比例约 0.05-0.075 比较合适
+  Kd: [1.2, 1.2, 1.2, 1.2, 0.5, 0.6, 0.5, 0.4]               # 关节阻尼系数，越大阻力越大，但能抑制抖动
+  Fc: [0, 0, 0, 0, 0, 0, 0, 0]                               # 库仑摩擦补偿，0为不补偿
+  k:  [28.417,  28.417,  29.065,  130.038, 151.771, 242.287, 7.888,  4.000] # tanh斜率
+  Fv: [0, 0, 0, 0, 0, 0, 0, 0]                               # 粘性摩擦补偿，0为不补偿
+  Fo: [0, 0, 0, 0, 0, 0, 0, 0]                               # 常数偏置力矩，0为不补偿

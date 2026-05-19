@@ -1,0 +1,7 @@
+{
+  "name": "openarm_teleop",
+  "type": "cmake",
+  "dependencies": [
+    "openarm_can"
+  ]
+}

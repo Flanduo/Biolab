@@ -1,0 +1,32 @@
+/**:
+  ros__parameters:
+    device_path: "/dev/input/js0"
+    deadzone: 0.25
+    publish_rate: 10.0
+    trajectory_dt: 0.25
+    linear_speed: 0.20
+    fine_scale: 0.35
+    invert.left_x: true
+    invert.left_y: true
+    invert.right_y: false
+    gripper_open: 0.04
+    gripper_close: 0.0
+    gripper_effort: 40.0
+
+    base_frame: "openarm_body_link0"
+    left_ee_link: "openarm_left_hand"
+    right_ee_link: "openarm_right_hand"
+
+    # Left stick controls X/Y, right stick vertical controls Z.
+    axis.left_x: 0
+    axis.left_y: 1
+    axis.right_y: 3
+
+    # Mode switch: X->left, Y->right, X+Y->both
+    button.x: 0
+    button.y: 3
+    # Gripper: LT->close, RT->open ; hold LB for fine motion
+    button.lt: 6
+    button.rt: 7
+    button.lb: 4
+    button.rb: 5

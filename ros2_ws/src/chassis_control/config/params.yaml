@@ -1,0 +1,9 @@
+chassis_control:
+  ros__parameters:
+    robot:
+      chassis_radius: 0.0875
+      wheel_perimeter: 0.647
+      fl_motor_start_angle: 5.2
+      fr_motor_start_angle: 3.3
+      rl_motor_start_angle: 5.4
+      rr_motor_start_angle: 2.1
